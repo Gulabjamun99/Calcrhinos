@@ -495,8 +495,722 @@
             </div>
         </div>
 
-        <!-- Add similar styling for all other calculators... -->
-        <!-- I'll include the essential calculators with the same modern styling pattern -->
+        <!-- RD Calculator -->
+        <div id="rd-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-coins text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Recurring Deposit Calculator</h2>
+                    <p class="text-gray-600">Calculate your RD maturity amount and returns</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Monthly Deposit Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="rd-amount" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="5,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Annual Interest Rate</label>
+                            <div class="relative">
+                                <input type="number" id="rd-rate" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="6.5" step="0.1">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Time Period</label>
+                            <div class="relative">
+                                <input type="number" id="rd-years" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="5">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateRD()" class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate RD Returns
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-coins mr-2 text-orange-600"></i>Maturity Details
+                        </h3>
+                        <div id="rd-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-coins text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter your RD details to see maturity amount</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PPF Calculator -->
+        <div id="ppf-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-university text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">PPF Calculator</h2>
+                    <p class="text-gray-600">Calculate your Public Provident Fund returns</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Yearly Investment Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="ppf-amount" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1,50,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Investment Period</label>
+                            <div class="relative">
+                                <input type="number" id="ppf-years" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="15" min="15">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-info-circle text-emerald-600"></i>
+                                <div class="text-sm text-emerald-700">
+                                    <p class="font-medium">Current PPF Rate: 7.1% per annum</p>
+                                    <p>Minimum lock-in period: 15 years</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculatePPF()" class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate PPF Returns
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-university mr-2 text-emerald-600"></i>PPF Maturity Details
+                        </h3>
+                        <div id="ppf-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-university text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter your PPF details to see maturity amount</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Budget Calculator -->
+        <div id="budget-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-wallet text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Budget Calculator</h2>
+                    <p class="text-gray-600">Track your income and expenses</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Monthly Income</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="monthly-income" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="50,000" onchange="updateBudgetDisplay()">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Add Expenses</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Expense Category</label>
+                                    <select id="expense-category" class="input-field w-full px-4 py-3 border-0 rounded-xl bg-white text-base">
+                                        <option value="">Select Category</option>
+                                        <option value="Food & Dining">Food & Dining</option>
+                                        <option value="Transportation">Transportation</option>
+                                        <option value="Housing">Housing</option>
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Shopping">Shopping</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Insurance">Insurance</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                        <input type="number" id="expense-amount" class="input-field w-full pl-8 pr-4 py-3 border-0 rounded-xl bg-white text-base" placeholder="5,000">
+                                    </div>
+                                </div>
+                                
+                                <div class="flex space-x-3">
+                                    <button onclick="addExpense()" class="flex-1 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300">
+                                        <i class="fas fa-plus mr-2"></i>Add Expense
+                                    </button>
+                                    <button onclick="clearExpenses()" class="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300">
+                                        <i class="fas fa-trash mr-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-chart-pie mr-2 text-teal-600"></i>Budget Summary
+                        </h3>
+                        <div id="budget-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-wallet text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter your income and add expenses to see budget summary</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Term Insurance Calculator -->
+        <div id="term-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Term Insurance Calculator</h2>
+                    <p class="text-gray-600">Calculate your term insurance premium and coverage needs</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Your Age</label>
+                            <div class="relative">
+                                <input type="number" id="term-age" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="30" min="18" max="65">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Annual Income</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="term-income" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="10,00,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Coverage Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="term-coverage" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1,00,00,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Policy Term</label>
+                            <div class="relative">
+                                <input type="number" id="term-years" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="30" min="10" max="40">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Gender</label>
+                            <select id="term-gender" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Smoking Status</label>
+                            <select id="term-smoking" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="no">Non-Smoker</option>
+                                <option value="yes">Smoker</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="calculateTerm()" class="w-full bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Premium
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-shield-alt mr-2 text-red-600"></i>Insurance Details
+                        </h3>
+                        <div id="term-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-shield-alt text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter your details to calculate term insurance premium</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Insurance Calculator -->
+        <div id="health-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heartbeat text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Health Insurance Calculator</h2>
+                    <p class="text-gray-600">Calculate your health insurance premium and coverage</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Your Age</label>
+                            <div class="relative">
+                                <input type="number" id="health-age" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="30" min="18" max="80">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Coverage Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="health-coverage" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="5,00,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Family Members</label>
+                            <select id="health-members" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="1">Individual</option>
+                                <option value="2">Self + Spouse</option>
+                                <option value="3">Self + Spouse + 1 Child</option>
+                                <option value="4">Self + Spouse + 2 Children</option>
+                                <option value="5">Family Floater (5 members)</option>
+                                <option value="6">Family Floater (6 members)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">City Tier</label>
+                            <select id="health-city" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="tier1">Tier 1 (Metro Cities)</option>
+                                <option value="tier2">Tier 2 Cities</option>
+                                <option value="tier3">Tier 3 Cities</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Pre-existing Conditions</label>
+                            <select id="health-conditions" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="none">None</option>
+                                <option value="minor">Minor (Hypertension, Diabetes)</option>
+                                <option value="major">Major (Heart Disease, Cancer History)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Room Type</label>
+                            <select id="health-room" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="shared">Shared Room</option>
+                                <option value="private">Private Room</option>
+                                <option value="deluxe">Deluxe Room</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="calculateHealth()" class="w-full bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Premium
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-heartbeat mr-2 text-pink-600"></i>Premium Details
+                        </h3>
+                        <div id="health-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-heartbeat text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter your details to calculate health insurance premium</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Building Cost Calculator -->
+        <div id="building-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Building Cost Calculator</h2>
+                    <p class="text-gray-600">Estimate construction and building costs</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Plot Area</label>
+                            <div class="relative">
+                                <input type="number" id="building-area" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1000">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Sq Ft</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Number of Floors</label>
+                            <select id="building-floors" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="1">Ground Floor Only</option>
+                                <option value="2">Ground + 1st Floor</option>
+                                <option value="3">Ground + 2 Floors</option>
+                                <option value="4">Ground + 3 Floors</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Construction Type</label>
+                            <select id="building-type" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="basic">Basic (₹1200/sq ft)</option>
+                                <option value="standard">Standard (₹1600/sq ft)</option>
+                                <option value="premium">Premium (₹2200/sq ft)</option>
+                                <option value="luxury">Luxury (₹3000/sq ft)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Location</label>
+                            <select id="building-location" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="metro">Metro Cities</option>
+                                <option value="tier2">Tier 2 Cities</option>
+                                <option value="tier3">Tier 3 Cities</option>
+                                <option value="rural">Rural Areas</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Additional Features</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="building-parking" class="mr-3 w-4 h-4 text-yellow-600">
+                                    <span>Parking Area (+₹200/sq ft)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="building-garden" class="mr-3 w-4 h-4 text-yellow-600">
+                                    <span>Garden/Landscaping (+₹150/sq ft)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="building-solar" class="mr-3 w-4 h-4 text-yellow-600">
+                                    <span>Solar Panel Setup (+₹300/sq ft)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateBuilding()" class="w-full bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Cost
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-home mr-2 text-yellow-600"></i>Cost Breakdown
+                        </h3>
+                        <div id="building-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-home text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter building details to get cost estimate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expense Tracker Calculator -->
+        <div id="expense-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-receipt text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Expense Tracker</h2>
+                    <p class="text-gray-600">Track and categorize your daily expenses</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Expense</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Expense Description</label>
+                                    <input type="text" id="expense-desc" class="input-field w-full px-4 py-3 border-0 rounded-xl bg-white text-base" placeholder="e.g., Grocery shopping">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                        <input type="number" id="expense-amt" class="input-field w-full pl-8 pr-4 py-3 border-0 rounded-xl bg-white text-base" placeholder="500">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                                    <select id="expense-cat" class="input-field w-full px-4 py-3 border-0 rounded-xl bg-white text-base">
+                                        <option value="">Select Category</option>
+                                        <option value="Food & Dining">🍽️ Food & Dining</option>
+                                        <option value="Transportation">🚗 Transportation</option>
+                                        <option value="Shopping">🛍️ Shopping</option>
+                                        <option value="Entertainment">🎬 Entertainment</option>
+                                        <option value="Bills & Utilities">💡 Bills & Utilities</option>
+                                        <option value="Healthcare">🏥 Healthcare</option>
+                                        <option value="Education">📚 Education</option>
+                                        <option value="Travel">✈️ Travel</option>
+                                        <option value="Other">📝 Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                    <input type="date" id="expense-date" class="input-field w-full px-4 py-3 border-0 rounded-xl bg-white text-base">
+                                </div>
+                                
+                                <div class="flex space-x-3">
+                                    <button onclick="addExpenseItem()" class="flex-1 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300">
+                                        <i class="fas fa-plus mr-2"></i>Add Expense
+                                    </button>
+                                    <button onclick="clearExpenseTracker()" class="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300">
+                                        <i class="fas fa-trash mr-2"></i>Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-lightbulb text-indigo-600"></i>
+                                <div class="text-sm text-indigo-700">
+                                    <p class="font-medium">Quick Tip:</p>
+                                    <p>Track expenses daily for better financial awareness</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-chart-pie mr-2 text-indigo-600"></i>Expense Summary
+                        </h3>
+                        <div id="expense-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-receipt text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Add expenses to see your spending summary</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mutual Fund Calculator -->
+        <div id="mf-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-pie text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Mutual Fund Calculator</h2>
+                    <p class="text-gray-600">Calculate mutual fund returns and growth</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Investment Type</label>
+                            <select id="mf-type" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" onchange="toggleMFInputs()">
+                                <option value="lumpsum">Lump Sum Investment</option>
+                                <option value="sip">SIP (Monthly Investment)</option>
+                            </select>
+                        </div>
+                        
+                        <div id="mf-lumpsum-input">
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Investment Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="mf-amount" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1,00,000">
+                            </div>
+                        </div>
+                        
+                        <div id="mf-sip-input" class="hidden">
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Monthly SIP Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="mf-sip-amount" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="5,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Expected Annual Return</label>
+                            <div class="relative">
+                                <input type="number" id="mf-return" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="12" step="0.1">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Investment Period</label>
+                            <div class="relative">
+                                <input type="number" id="mf-years" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="10">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Fund Category</label>
+                            <select id="mf-category" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="equity">Equity Funds (High Risk)</option>
+                                <option value="hybrid">Hybrid Funds (Medium Risk)</option>
+                                <option value="debt">Debt Funds (Low Risk)</option>
+                                <option value="elss">ELSS (Tax Saving)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Expense Ratio</label>
+                            <div class="relative">
+                                <input type="number" id="mf-expense" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1.5" step="0.1">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateMF()" class="w-full bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Returns
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-chart-pie mr-2 text-violet-600"></i>Investment Results
+                        </h3>
+                        <div id="mf-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-chart-pie text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter investment details to see projected returns</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debenture Calculator -->
+        <div id="debenture-calculator" class="calculator-section hidden animate-fade-in">
+            <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 max-w-4xl mx-auto calculator-card">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-amber-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-certificate text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Debenture Calculator</h2>
+                    <p class="text-gray-600">Calculate debenture returns and maturity value</p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Investment Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₹</span>
+                                <input type="number" id="debenture-amount" class="input-field w-full pl-8 pr-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="1,00,000">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Annual Interest Rate</label>
+                            <div class="relative">
+                                <input type="number" id="debenture-rate" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="8.5" step="0.1">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">%</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Tenure</label>
+                            <div class="relative">
+                                <input type="number" id="debenture-years" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium" placeholder="5">
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">Years</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Debenture Type</label>
+                            <select id="debenture-type" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="convertible">Convertible Debenture</option>
+                                <option value="non-convertible">Non-Convertible Debenture</option>
+                                <option value="partially-convertible">Partially Convertible</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Interest Payment</label>
+                            <select id="debenture-payment" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="annual">Annual</option>
+                                <option value="semi-annual">Semi-Annual</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="cumulative">Cumulative (At Maturity)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-3">Credit Rating</label>
+                            <select id="debenture-rating" class="input-field w-full px-4 py-4 border-0 rounded-xl bg-gray-50 focus:bg-white text-lg font-medium">
+                                <option value="AAA">AAA (Highest Safety)</option>
+                                <option value="AA">AA+ to AA- (High Safety)</option>
+                                <option value="A">A+ to A- (Adequate Safety)</option>
+                                <option value="BBB">BBB+ to BBB- (Moderate Safety)</option>
+                                <option value="BB">BB+ to BB- (Speculative)</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="calculateDebenture()" class="w-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Returns
+                        </button>
+                    </div>
+                    
+                    <div class="result-card p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-certificate mr-2 text-amber-600"></i>Debenture Returns
+                        </h3>
+                        <div id="debenture-results" class="space-y-4">
+                            <div class="text-center py-12">
+                                <i class="fas fa-certificate text-6xl text-gray-300 mb-4"></i>
+                                <p class="text-gray-500">Enter debenture details to see returns</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
@@ -712,8 +1426,233 @@
             `;
         }
 
-        // Similar enhanced functions for other calculators...
-        // (I'll include the key ones to demonstrate the pattern)
+        // Enhanced FD Calculator
+        function calculateFD() {
+            const principal = parseFloat(document.getElementById('fd-principal').value) || 0;
+            const rate = parseFloat(document.getElementById('fd-rate').value) || 0;
+            const years = parseFloat(document.getElementById('fd-years').value) || 0;
+            const compound = parseFloat(document.getElementById('fd-compound').value) || 4;
+
+            if (principal <= 0 || rate <= 0 || years <= 0) {
+                document.getElementById('fd-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values for all fields</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const maturityAmount = principal * Math.pow(1 + (rate / 100) / compound, compound * years);
+            const interest = maturityAmount - principal;
+
+            document.getElementById('fd-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Principal Amount</span>
+                                <span class="text-lg font-bold text-blue-800">₹${principal.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Interest Earned</span>
+                                <span class="text-lg font-bold text-green-800">₹${interest.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-purple-700">Maturity Amount</span>
+                                <span class="text-xl font-bold text-purple-800">₹${maturityAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-purple-500 to-violet-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Effective Rate</span>
+                                <span class="text-xl font-bold">${((interest / principal) * 100 / years).toFixed(2)}%</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">Annual effective return</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // RD Calculator
+        function calculateRD() {
+            const monthlyAmount = parseFloat(document.getElementById('rd-amount').value) || 0;
+            const rate = parseFloat(document.getElementById('rd-rate').value) || 0;
+            const years = parseFloat(document.getElementById('rd-years').value) || 0;
+
+            if (monthlyAmount <= 0 || rate <= 0 || years <= 0) {
+                document.getElementById('rd-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values for all fields</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const months = years * 12;
+            const monthlyRate = rate / 12 / 100;
+            const totalDeposit = monthlyAmount * months;
+            
+            // RD formula: M = R * [(1 + i)^n - 1] / i * (1 + i)
+            const maturityAmount = monthlyAmount * (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate));
+            const interest = maturityAmount - totalDeposit;
+
+            document.getElementById('rd-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Total Deposits</span>
+                                <span class="text-lg font-bold text-blue-800">₹${totalDeposit.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Interest Earned</span>
+                                <span class="text-lg font-bold text-green-800">₹${interest.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-orange-50 p-4 rounded-xl border-l-4 border-orange-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-orange-700">Maturity Amount</span>
+                                <span class="text-xl font-bold text-orange-800">₹${maturityAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // PPF Calculator
+        function calculatePPF() {
+            const yearlyAmount = parseFloat(document.getElementById('ppf-amount').value) || 0;
+            const years = parseFloat(document.getElementById('ppf-years').value) || 15;
+            const rate = 7.1; // Current PPF rate
+
+            if (yearlyAmount <= 0 || years <= 0) {
+                document.getElementById('ppf-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const totalInvestment = yearlyAmount * years;
+            const maturityAmount = yearlyAmount * (((Math.pow(1 + rate/100, years) - 1) / (rate/100)));
+            const interest = maturityAmount - totalInvestment;
+
+            document.getElementById('ppf-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Total Investment</span>
+                                <span class="text-lg font-bold text-blue-800">₹${totalInvestment.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Interest Earned</span>
+                                <span class="text-lg font-bold text-green-800">₹${interest.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-emerald-700">Maturity Amount</span>
+                                <span class="text-xl font-bold text-emerald-800">₹${maturityAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl text-white">
+                            <div class="text-center">
+                                <div class="text-sm font-medium">Tax-Free Returns</div>
+                                <div class="text-xs opacity-90 mt-1">No tax on maturity amount</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Budget Calculator
+        function addExpense() {
+            const category = document.getElementById('expense-category').value;
+            const amount = parseFloat(document.getElementById('expense-amount').value) || 0;
+
+            if (category && amount > 0) {
+                expenses.push({ category, amount });
+                document.getElementById('expense-category').value = '';
+                document.getElementById('expense-amount').value = '';
+                updateBudgetDisplay();
+            }
+        }
+
+        function updateBudgetDisplay() {
+            const income = parseFloat(document.getElementById('monthly-income').value) || 0;
+            const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+            const remaining = income - totalExpenses;
+
+            let expenseList = expenses.map(exp => 
+                `<div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="font-medium">${exp.category}</span>
+                    <span class="text-lg font-bold">₹${exp.amount.toLocaleString('en-IN')}</span>
+                </div>`
+            ).join('');
+
+            document.getElementById('budget-results').innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-blue-700">Monthly Income</span>
+                            <span class="text-lg font-bold text-blue-800">₹${income.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-red-700">Total Expenses</span>
+                            <span class="text-lg font-bold text-red-800">₹${totalExpenses.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-${remaining >= 0 ? 'green' : 'red'}-50 p-4 rounded-xl border-l-4 border-${remaining >= 0 ? 'green' : 'red'}-500">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-${remaining >= 0 ? 'green' : 'red'}-700">${remaining >= 0 ? 'Remaining' : 'Deficit'}</span>
+                            <span class="text-xl font-bold text-${remaining >= 0 ? 'green' : 'red'}-800">₹${Math.abs(remaining).toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    ${expenses.length > 0 ? `
+                        <div class="mt-6">
+                            <h4 class="font-semibold mb-3">Expense Breakdown:</h4>
+                            <div class="space-y-2">
+                                ${expenseList}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function clearExpenses() {
+            expenses = [];
+            updateBudgetDisplay();
+        }
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
@@ -759,9 +1698,520 @@
             }
         });
 
-        // Add all other calculator functions here...
-        // (Following the same enhanced pattern with better UI feedback)
+        // Global variables for new calculators
+        let expenseItems = [];
+        let currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('expense-date') && (document.getElementById('expense-date').value = currentDate);
+
+        // Term Insurance Calculator
+        function calculateTerm() {
+            const age = parseFloat(document.getElementById('term-age').value) || 0;
+            const income = parseFloat(document.getElementById('term-income').value) || 0;
+            const coverage = parseFloat(document.getElementById('term-coverage').value) || 0;
+            const years = parseFloat(document.getElementById('term-years').value) || 0;
+            const gender = document.getElementById('term-gender').value;
+            const smoking = document.getElementById('term-smoking').value;
+
+            if (age <= 0 || coverage <= 0 || years <= 0) {
+                document.getElementById('term-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values for all fields</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Basic premium calculation (simplified formula)
+            let basePremium = (coverage / 1000) * (age / 10) * 0.5;
+            
+            // Gender adjustment
+            if (gender === 'female') basePremium *= 0.9;
+            
+            // Smoking adjustment
+            if (smoking === 'yes') basePremium *= 1.5;
+            
+            // Age adjustment
+            if (age > 40) basePremium *= 1.3;
+            if (age > 50) basePremium *= 1.8;
+
+            const annualPremium = Math.round(basePremium);
+            const totalPremium = annualPremium * years;
+            const coverageRatio = Math.round(coverage / annualPremium);
+
+            document.getElementById('term-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Annual Premium</span>
+                                <span class="text-lg font-bold text-blue-800">₹${annualPremium.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Coverage Amount</span>
+                                <span class="text-lg font-bold text-green-800">₹${coverage.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-xl border-l-4 border-red-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-red-700">Total Premium (${years} years)</span>
+                                <span class="text-lg font-bold text-red-800">₹${totalPremium.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-red-500 to-pink-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Coverage Ratio</span>
+                                <span class="text-xl font-bold">${coverageRatio}:1</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">Coverage per rupee of premium</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center space-x-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Premiums may vary by insurer</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Health Insurance Calculator
+        function calculateHealth() {
+            const age = parseFloat(document.getElementById('health-age').value) || 0;
+            const coverage = parseFloat(document.getElementById('health-coverage').value) || 0;
+            const members = parseFloat(document.getElementById('health-members').value) || 1;
+            const city = document.getElementById('health-city').value;
+            const conditions = document.getElementById('health-conditions').value;
+            const room = document.getElementById('health-room').value;
+
+            if (age <= 0 || coverage <= 0) {
+                document.getElementById('health-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Base premium calculation
+            let basePremium = (coverage / 100000) * 3000;
+            
+            // Age factor
+            if (age > 45) basePremium *= 1.5;
+            if (age > 60) basePremium *= 2.2;
+            
+            // Members factor
+            basePremium *= (members * 0.7);
+            
+            // City factor
+            const cityMultiplier = { tier1: 1.3, tier2: 1.1, tier3: 0.9 };
+            basePremium *= cityMultiplier[city] || 1;
+            
+            // Conditions factor
+            const conditionMultiplier = { none: 1, minor: 1.4, major: 2.0 };
+            basePremium *= conditionMultiplier[conditions] || 1;
+            
+            // Room factor
+            const roomMultiplier = { shared: 1, private: 1.2, deluxe: 1.5 };
+            basePremium *= roomMultiplier[room] || 1;
+
+            const annualPremium = Math.round(basePremium);
+            const monthlyPremium = Math.round(annualPremium / 12);
+
+            document.getElementById('health-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Annual Premium</span>
+                                <span class="text-lg font-bold text-blue-800">₹${annualPremium.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Monthly Premium</span>
+                                <span class="text-lg font-bold text-green-800">₹${monthlyPremium.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-pink-50 p-4 rounded-xl border-l-4 border-pink-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-pink-700">Coverage Amount</span>
+                                <span class="text-xl font-bold text-pink-800">₹${coverage.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-pink-500 to-rose-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Family Members</span>
+                                <span class="text-xl font-bold">${members}</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">Covered under this policy</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Building Cost Calculator
+        function calculateBuilding() {
+            const area = parseFloat(document.getElementById('building-area').value) || 0;
+            const floors = parseFloat(document.getElementById('building-floors').value) || 1;
+            const type = document.getElementById('building-type').value;
+            const location = document.getElementById('building-location').value;
+            const parking = document.getElementById('building-parking').checked;
+            const garden = document.getElementById('building-garden').checked;
+            const solar = document.getElementById('building-solar').checked;
+
+            if (area <= 0) {
+                document.getElementById('building-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid area</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Base rates per sq ft
+            const typeRates = { basic: 1200, standard: 1600, premium: 2200, luxury: 3000 };
+            const locationMultiplier = { metro: 1.2, tier2: 1.0, tier3: 0.8, rural: 0.6 };
+            
+            let baseRate = typeRates[type] || 1600;
+            baseRate *= locationMultiplier[location] || 1;
+            
+            const totalArea = area * floors;
+            let totalCost = totalArea * baseRate;
+            
+            // Additional features
+            let additionalCost = 0;
+            if (parking) additionalCost += area * 200;
+            if (garden) additionalCost += area * 150;
+            if (solar) additionalCost += area * 300;
+            
+            const finalCost = totalCost + additionalCost;
+
+            document.getElementById('building-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Construction Area</span>
+                                <span class="text-lg font-bold text-blue-800">${totalArea.toLocaleString('en-IN')} sq ft</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Base Construction Cost</span>
+                                <span class="text-lg font-bold text-green-800">₹${totalCost.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        ${additionalCost > 0 ? `
+                        <div class="bg-purple-50 p-4 rounded-xl border-l-4 border-purple-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-purple-700">Additional Features</span>
+                                <span class="text-lg font-bold text-purple-800">₹${additionalCost.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <div class="bg-gradient-to-r from-yellow-500 to-orange-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Total Estimated Cost</span>
+                                <span class="text-xl font-bold">₹${finalCost.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">₹${Math.round(finalCost/totalArea)} per sq ft</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center space-x-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Costs may vary based on materials and labor</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Expense Tracker Functions
+        function addExpenseItem() {
+            const desc = document.getElementById('expense-desc').value;
+            const amount = parseFloat(document.getElementById('expense-amt').value) || 0;
+            const category = document.getElementById('expense-cat').value;
+            const date = document.getElementById('expense-date').value;
+
+            if (desc && amount > 0 && category && date) {
+                expenseItems.push({ desc, amount, category, date });
+                document.getElementById('expense-desc').value = '';
+                document.getElementById('expense-amt').value = '';
+                document.getElementById('expense-cat').value = '';
+                updateExpenseDisplay();
+            }
+        }
+
+        function updateExpenseDisplay() {
+            const totalExpenses = expenseItems.reduce((sum, item) => sum + item.amount, 0);
+            const categoryTotals = {};
+            
+            expenseItems.forEach(item => {
+                categoryTotals[item.category] = (categoryTotals[item.category] || 0) + item.amount;
+            });
+
+            let categoryBreakdown = Object.entries(categoryTotals).map(([cat, amt]) => 
+                `<div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="font-medium">${cat}</span>
+                    <span class="text-lg font-bold text-indigo-600">₹${amt.toLocaleString('en-IN')}</span>
+                </div>`
+            ).join('');
+
+            let recentExpenses = expenseItems.slice(-5).reverse().map(item => 
+                `<div class="flex justify-between items-center p-2 bg-white rounded-lg border">
+                    <div>
+                        <div class="font-medium text-sm">${item.desc}</div>
+                        <div class="text-xs text-gray-500">${item.date}</div>
+                    </div>
+                    <span class="font-bold text-indigo-600">₹${item.amount.toLocaleString('en-IN')}</span>
+                </div>`
+            ).join('');
+
+            document.getElementById('expense-results').innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-indigo-50 p-4 rounded-xl border-l-4 border-indigo-500">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium text-indigo-700">Total Expenses</span>
+                            <span class="text-2xl font-bold text-indigo-800">₹${totalExpenses.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    
+                    ${Object.keys(categoryTotals).length > 0 ? `
+                        <div class="mt-6">
+                            <h4 class="font-semibold mb-3">Category Breakdown:</h4>
+                            <div class="space-y-2">
+                                ${categoryBreakdown}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${expenseItems.length > 0 ? `
+                        <div class="mt-6">
+                            <h4 class="font-semibold mb-3">Recent Expenses:</h4>
+                            <div class="space-y-2 max-h-48 overflow-y-auto">
+                                ${recentExpenses}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function clearExpenseTracker() {
+            expenseItems = [];
+            updateExpenseDisplay();
+        }
+
+        // Mutual Fund Calculator Functions
+        function toggleMFInputs() {
+            const type = document.getElementById('mf-type').value;
+            const lumpsumInput = document.getElementById('mf-lumpsum-input');
+            const sipInput = document.getElementById('mf-sip-input');
+            
+            if (type === 'sip') {
+                lumpsumInput.classList.add('hidden');
+                sipInput.classList.remove('hidden');
+            } else {
+                lumpsumInput.classList.remove('hidden');
+                sipInput.classList.add('hidden');
+            }
+        }
+
+        function calculateMF() {
+            const type = document.getElementById('mf-type').value;
+            const returnRate = parseFloat(document.getElementById('mf-return').value) || 0;
+            const years = parseFloat(document.getElementById('mf-years').value) || 0;
+            const expenseRatio = parseFloat(document.getElementById('mf-expense').value) || 0;
+            
+            let amount, totalInvestment, maturityAmount;
+            
+            if (type === 'sip') {
+                amount = parseFloat(document.getElementById('mf-sip-amount').value) || 0;
+                if (amount <= 0 || returnRate <= 0 || years <= 0) {
+                    showMFError();
+                    return;
+                }
+                
+                const monthlyRate = (returnRate - expenseRatio) / 12 / 100;
+                const months = years * 12;
+                totalInvestment = amount * months;
+                maturityAmount = amount * (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate));
+            } else {
+                amount = parseFloat(document.getElementById('mf-amount').value) || 0;
+                if (amount <= 0 || returnRate <= 0 || years <= 0) {
+                    showMFError();
+                    return;
+                }
+                
+                totalInvestment = amount;
+                const effectiveRate = (returnRate - expenseRatio) / 100;
+                maturityAmount = amount * Math.pow(1 + effectiveRate, years);
+            }
+            
+            const totalReturns = maturityAmount - totalInvestment;
+
+            document.getElementById('mf-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Total Investment</span>
+                                <span class="text-lg font-bold text-blue-800">₹${totalInvestment.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Expected Returns</span>
+                                <span class="text-lg font-bold text-green-800">₹${totalReturns.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-violet-50 p-4 rounded-xl border-l-4 border-violet-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-violet-700">Maturity Value</span>
+                                <span class="text-xl font-bold text-violet-800">₹${maturityAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-violet-500 to-purple-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Wealth Multiplier</span>
+                                <span class="text-xl font-bold">${(maturityAmount / totalInvestment).toFixed(1)}x</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">After ${expenseRatio}% expense ratio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center space-x-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Mutual fund investments are subject to market risks</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showMFError() {
+            document.getElementById('mf-results').innerHTML = `
+                <div class="text-center py-8">
+                    <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                    <p class="text-red-500 font-medium">Please enter valid values for all fields</p>
+                </div>
+            `;
+        }
+
+        // Debenture Calculator
+        function calculateDebenture() {
+            const amount = parseFloat(document.getElementById('debenture-amount').value) || 0;
+            const rate = parseFloat(document.getElementById('debenture-rate').value) || 0;
+            const years = parseFloat(document.getElementById('debenture-years').value) || 0;
+            const payment = document.getElementById('debenture-payment').value;
+
+            if (amount <= 0 || rate <= 0 || years <= 0) {
+                document.getElementById('debenture-results').innerHTML = `
+                    <div class="text-center py-8">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400 mb-4"></i>
+                        <p class="text-red-500 font-medium">Please enter valid values</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let maturityAmount, totalInterest, paymentFrequency;
+            
+            switch(payment) {
+                case 'annual':
+                    paymentFrequency = 1;
+                    break;
+                case 'semi-annual':
+                    paymentFrequency = 2;
+                    break;
+                case 'quarterly':
+                    paymentFrequency = 4;
+                    break;
+                case 'cumulative':
+                    paymentFrequency = 1;
+                    break;
+                default:
+                    paymentFrequency = 1;
+            }
+
+            if (payment === 'cumulative') {
+                // Compound interest for cumulative
+                maturityAmount = amount * Math.pow(1 + rate/100, years);
+            } else {
+                // Simple interest for regular payments
+                totalInterest = (amount * rate * years) / 100;
+                maturityAmount = amount + totalInterest;
+            }
+
+            totalInterest = maturityAmount - amount;
+            const annualInterest = totalInterest / years;
+
+            document.getElementById('debenture-results').innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-blue-700">Principal Amount</span>
+                                <span class="text-lg font-bold text-blue-800">₹${amount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-green-700">Total Interest</span>
+                                <span class="text-lg font-bold text-green-800">₹${totalInterest.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-amber-50 p-4 rounded-xl border-l-4 border-amber-500">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-amber-700">Maturity Amount</span>
+                                <span class="text-xl font-bold text-amber-800">₹${maturityAmount.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-amber-500 to-yellow-600 p-4 rounded-xl text-white">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Annual Interest</span>
+                                <span class="text-xl font-bold">₹${annualInterest.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div class="text-xs opacity-90 mt-1">${rate}% per annum</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="inline-flex items-center space-x-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Returns subject to credit risk and market conditions</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
         
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b04ec737f7a739',t:'MTc1NDUwMTkwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96b07bd326253bc2',t:'MTc1NDUwMzc1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
